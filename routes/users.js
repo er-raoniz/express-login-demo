@@ -6,11 +6,14 @@ const login = require('../controllers/loginController');
 const register = require('../controllers/registerController');
 const userList = require('../controllers/userListController');
 
-// POST users' login
-router.post('/login', login);
-// POST users' registration
-router.post('/register', register);
+// validator
+const { listRules, loginRules, registerRules, validate } = require('../middlewares/validator');
+
 // GET users' listing
-router.get('/list', userList);
+router.get('/list', listRules(), validate, userList);
+// POST users' login
+router.post('/login', loginRules(), validate, login);
+// POST users' registration
+router.post('/register', registerRules(), validate, register);
 
 module.exports = router;
