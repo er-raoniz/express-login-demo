@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const mysqlConfig = {
     host: env.mysql.host,
@@ -23,11 +23,11 @@ function connect(cb) {
     })
 }
 
-async function executeQuery(query) {
-    console.debug(`query: `, query)
+async function executeQuery(query, params) {
+    console.debug(`query: `, query, params)
     return new Promise((resolve, reject) => {
         try {
-            pool.query(query, (e, r, f) => {
+            pool.execute(query, params, (e, r, f) => {
                 if (e) {
                     reject(e);
                 }

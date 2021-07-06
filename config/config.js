@@ -1,4 +1,7 @@
 module.exports = {
+    "hashing": {
+        "salt_rounds": 10
+    },
     "mysql": {
         "host": "us-cdbr-east-04.cleardb.com",
         "database": "heroku_a7729c5b9079347",

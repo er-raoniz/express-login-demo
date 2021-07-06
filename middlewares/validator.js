@@ -4,7 +4,7 @@ const listRules = () => {
     return [
         param('first_name').trim().escape().optional(),
         param('last_name').trim().escape().optional(),
-        param('employee_id').trim().escape().optional()
+        param('emp_id').trim().escape().optional()
     ]
 }
 
@@ -21,7 +21,7 @@ const registerRules = () => {
         body('last_name').trim().escape().exists().isAlpha(),
         body('email_id').trim().escape().exists().normalizeEmail().trim().escape().isEmail(),
         body('password').trim().escape().exists().trim().escape().isLength({ min: 8, max: 16 }).isAlphanumeric(),
-        body('employee_id').trim().escape().exists().isAlphanumeric(),
+        body('emp_id').trim().escape().exists().isAlphanumeric(),
         body('org_name').trim().escape().exists().isAlpha()
     ]
 }
