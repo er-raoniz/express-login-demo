@@ -14,7 +14,7 @@ function generateToken(email) {
 
 function verifyToken(token) {
     try {
-        return jwt.verify(token, "env.token.secret");
+        return jwt.verify(token, env.token.secret);
     } catch (error) {
         return false;
     }
