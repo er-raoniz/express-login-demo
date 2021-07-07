@@ -27,7 +27,7 @@ module.exports = async function (request, response) {
                 "message": "Duplicate employee id"
             });
         } else {
-            response.status(500).json({ "code": "INTRNL_ERR", "message": "Internal server error" });
+            response.status(500).json({ "code": "INTRNL_ERR", "message": "internal server error" });
         }
     }
 }

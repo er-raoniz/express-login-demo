@@ -7,10 +7,11 @@ const register = require('../controllers/registerController');
 const userList = require('../controllers/userListController');
 
 // validator
+const authenticator = require('../middlewares/authenticator');
 const { listRules, loginRules, registerRules, validate } = require('../middlewares/validator');
 
 // GET users' listing
-router.get('/list', listRules(), validate, userList);
+router.get('/list', listRules(), authenticator, validate, userList);
 // POST users' login
 router.post('/login', loginRules(), validate, login);
 // POST users' registration
