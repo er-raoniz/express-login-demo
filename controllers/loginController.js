@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('../utils/jwt');
 const mysql = require('../services/mysqlService');
 
 module.exports = async function (request, response) {
@@ -7,7 +8,8 @@ module.exports = async function (request, response) {
         let user_data = await mysql.executeQuery(query, [request.body.email_id]);
 
         if (await bcrypt.compare(request.body.password, user_data[0].pwd_hash)) {
-            response.json({ "code": "OK", "message": "user logged in" });
+            let token = jwt.generateToken(request.body.email_id);
+            response.json({ "code": "OK", "message": "user logged in", "token": token });
         } else {
             response.status(401).json({ "code": "INVLD_PWD", "message": "wrong password" })
         }
