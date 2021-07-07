@@ -1,10 +1,12 @@
-const { body, param, validationResult } = require('express-validator')
+const { body, query, validationResult } = require('express-validator')
 
 const listRules = () => {
     return [
-        param('first_name').trim().escape().optional(),
-        param('last_name').trim().escape().optional(),
-        param('emp_id').trim().escape().optional()
+        query('first_name').trim().escape().isAlpha().optional(),
+        query('last_name').trim().escape().isAlpha().optional(),
+        query('emp_id').trim().escape().isAlpha().optional(),
+        query('page').trim().escape().isNumeric().optional(),
+        query('limit').trim().escape().isNumeric().optional()
     ]
 }
 
