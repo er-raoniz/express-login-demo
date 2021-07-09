@@ -4,9 +4,15 @@ const listRules = () => {
     return [
         query('first_name').trim().escape().isAlpha().optional(),
         query('last_name').trim().escape().isAlpha().optional(),
-        query('emp_id').trim().escape().isAlpha().optional(),
+        query('emp_id').trim().escape().isAlphanumeric().optional(),
         query('page').trim().escape().isNumeric().optional(),
-        query('limit').trim().escape().isNumeric().optional()
+        query('limit').trim().escape().isNumeric().optional(),
+        query('sort_by').trim().escape().custom(val => {
+            if (['first_name', 'last_name', 'email_id', 'emp_id', 'org_name'].includes(val)) return true;
+        }).optional(),
+        query('order').trim().escape().isAlpha().custom(val => {
+            if (['asc', 'desc'].includes(val)) return true;
+        }).optional()
     ]
 }
 
